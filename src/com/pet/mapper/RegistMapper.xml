@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pet.mapper.RegistMapper">
+	<!-- <resultMap type="Regist" id="regist-cpet">
+	<id property="r_id" column="r_id"/>
+	<result property="u_id" column="u_id"/>
+	<result property="c_id" column="c_id"/>
+	<result property="ts" column="ts"/>
+	<result property="status" column="status"/>
+	<association property="cpet" javaType="Cpet">
+	<id property="c_id" column="c_id"/>
+	<result property="nickname" column="nickname"/>
+	<result property="category" column="category"/>
+	<result property="type" column="type"/>
+	<result property="desc" column="desc"/>
+	<result property="ts" column="ts"/>
+	<result property="from" column="from"/>
+	</association>
+	</resultMap> -->
+
+	<insert id="addRegist" parameterType="Regist">
+		insert into regist values(null,#{u_id},#{c_id},#{ts},#{status})
+		
+	</insert>
+	
+	
+	
+</mapper>

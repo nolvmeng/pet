@@ -57,7 +57,7 @@
 	        <!-- additional properties specific to JavaMail -->
 			<props>
                 <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.timeout">90000</prop>
+                <prop key="mail.smtp.timeout">50000</prop>
             </props>
 
 	    </property>
