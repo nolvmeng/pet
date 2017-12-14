@@ -7,7 +7,7 @@ import java.util.Properties;
 
 import org.antlr.stringtemplate.StringTemplateGroup;
 
-import com.pet.service.MailService;
+import com.pet.service.impl.MailService;
 
 public class OSSClientConstants {
 	

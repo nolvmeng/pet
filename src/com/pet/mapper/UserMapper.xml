@@ -7,7 +7,8 @@
 	</select>
 	<!-- 注册用户 -->
 	<insert id="addUser" parameterType="User">
-	    insert into user(u_id,email,user_name,user_pwd) values(null,#{email},#{user_name},#{user_pwd})
+	    insert into user(u_id,email,user_name,user_pwd,user_activationKey,user_avatar) 
+	              values(null, #{email}, #{user_name}, #{user_pwd},#{user_activationKey},#{user_avatar})
 	</insert>
 	<!-- 登录验证 -->
 	<select id="findUser" parameterType="User" resultType="User">

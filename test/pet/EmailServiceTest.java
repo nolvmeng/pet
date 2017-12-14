@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-import com.pet.service.MailService;
+import com.pet.service.impl.MailService;
 
 public class EmailServiceTest {
 	private ApplicationContext context=null;

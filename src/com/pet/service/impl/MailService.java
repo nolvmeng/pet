@@ -1,4 +1,4 @@
-package com.pet.service;
+package com.pet.service.impl;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -88,13 +88,13 @@ public class MailService {
      * @param to
      */
     public void sendAccountActivationEmail(String to, String key){
-    	//String body = "<a href='"+ACTIVATE_CONTEXT+key+"?email="+to+"'>æ¿?æ´»é“¾æ?</a>";
+    	//String body = "<a href='"+ACTIVATE_CONTEXT+key+"?email="+to+"'>æ¿€æ´»</a>";
     	StringTemplate activation_temp = templateGroup.getInstanceOf("activation");
     	activation_temp.setAttribute("img_base_url", IMG_BASE_URL);
     	activation_temp.setAttribute("email", to);
     	activation_temp.setAttribute("href", ACTIVATE_CONTEXT+key+"?email="+to);
     	activation_temp.setAttribute("link", ACTIVATE_CONTEXT+key+"?email="+to);
-    	sendMail(to, "ÕË»§¼¤»î", activation_temp.toString());
+    	sendMail(to, "ç”¨æˆ·æ¿€æ´»", activation_temp.toString());
     }
     
     /**
@@ -108,6 +108,6 @@ public class MailService {
     	activation_temp.setAttribute("href", RESETPWD_CONTEXT+"?key="+key+"&email="+to);
     	activation_temp.setAttribute("link", RESETPWD_CONTEXT+"?key="+key+"&email="+to);
     	
-    	sendMail(to, "ÃÜÂëÖØÖÃ", activation_temp.toString());
+    	sendMail(to, "å¯†ç é‡ç½®", activation_temp.toString());
     }
 }
