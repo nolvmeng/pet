@@ -153,8 +153,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div> <!-- /.container -->
 						</div> <!-- /.camera_caption -->
 					</div>
-					
-					
+					<div data-src="<%=path%>/images/home/banner-slider-1.jpg">
+						<div class="camera_caption">
+							<div class="container text-center">
+								<h1 class="wow fadeInUp animated" data-wow-delay="0.2s">吸猫聚集地</h1>
+							    <span class="wow fadeInUp animated" data-wow-delay="0.5s"> 当代中国最大的吸猫网站 </span>
+							    <p class="wow fadeInUp animated" data-wow-delay="0.8s">还等什么，赶紧加入吧！！！！！</p>
+								<a href="<%=path%>/registPet.action" class="tran3s wow fadeInLeft animated banner-button-left" data-wow-delay="1s">登记宠物</a>
+								<a href="blog-v1.html" class="tran3s wow fadeInRight animated banner-button-right" data-wow-delay="1s">show出你的宠物心得</a>
+							</div> <!-- /.container -->
+						</div> <!-- /.camera_caption -->
+					</div>
+					<div data-src="<%=path%>/images/home/banner-slider-2.jpg">
+						<div class="camera_caption">
+							<div class="container text-center">
+								<h1 class="wow fadeInUp animated" data-wow-delay="0.2s">吸猫聚集地</h1>
+							    <span class="wow fadeInUp animated" data-wow-delay="0.5s"> 当代中国最大的吸猫网站 </span>
+							    <p class="wow fadeInUp animated" data-wow-delay="0.8s">还等什么，赶紧加入吧！！！！！</p>
+								<a href="<%=path%>/registPet.action" class="tran3s wow fadeInLeft animated banner-button-left" data-wow-delay="1s">登记宠物</a>
+								<a href="blog-va.html" class="tran3s wow fadeInRight animated banner-button-right" data-wow-delay="1s">show出你的宠物心得</a>
+							</div> <!-- /.container -->
+						</div> <!-- /.camera_caption -->
+					</div>
 				</div> <!-- /#theme-main-banner -->
 			</section>
 

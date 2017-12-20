@@ -76,6 +76,9 @@
 		<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
 	   </tx:attributes>
 	 </tx:advice>
-	 
+	 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" 
+	  p:defaultEncoding="UTF-8"  
+        p:maxUploadSize="54000000"  
+        p:uploadTempDir="fileUpload/temp" />
 	 	
 </beans>

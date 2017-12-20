@@ -3,7 +3,7 @@ package com.pet.pojo;
 public class Img {
 	private int img_id;
 	private String key;
-	private String object_id;//目标id
+	private int object_id;//目标id
 	private String desc;
 	/**
 	 * @return the img_id
@@ -29,16 +29,12 @@ public class Img {
 	public void setKey(String key) {
 		this.key = key;
 	}
-	/**
-	 * @return the object_id
-	 */
-	public String getObject_id() {
+	
+	
+	public int getObject_id() {
 		return object_id;
 	}
-	/**
-	 * @param object_id the object_id to set
-	 */
-	public void setObject_id(String object_id) {
+	public void setObject_id(int object_id) {
 		this.object_id = object_id;
 	}
 	/**

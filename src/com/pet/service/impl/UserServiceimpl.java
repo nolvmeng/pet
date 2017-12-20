@@ -1,6 +1,7 @@
 package com.pet.service.impl;
 
 import java.net.URLEncoder;
+import java.util.Map;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -23,13 +24,13 @@ public class UserServiceimpl implements UserService {
 	@Override
 	public User getUserById(Integer id) {
 		// TODO Auto-generated method stub
-		User user = userMapper.getUserById(1);
+		User user = userMapper.getUserById(id);
 		
 		return user;
 	}
 
 	@Override
-	public String addUser(User user) {
+	public String addUser(User user , Map map) {
 		// TODO Auto-generated method stub
 		String email = user.getEmail();
 		if(email == null || email.length() <= 0)
@@ -59,7 +60,8 @@ public class UserServiceimpl implements UserService {
 				System.out.println(activationKey);
 				user.setUser_activationKey(activationKey);
 				 userMapper.addUser(user);
-				
+				 map.put("key", activationKey);
+				 map.put("uid", user.getU_id());
 			 
 			//	map.put("activationKey", URLEncoder.encode(activationKey));
 				return Property.SUCCESS_ACCOUNT_REG ;
@@ -73,6 +75,9 @@ public class UserServiceimpl implements UserService {
 	@Override
 	public User findUser(User user) {
 		// TODO Auto-generated method stub
+		
+		user.setUser_pwd(CipherUtil.generatePassword(user.getUser_pwd()));//验证
+		
 		if(userMapper.findUser(user)!=null){
 			User u = userMapper.findUser(user);
 		return u;}
@@ -82,11 +87,18 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public User findByEmail(String email) {
-		// TODO Auto-generated method stub
 		
-		return null;
+		
+		return userMapper.finUserByEmail(email);
 	}
 	
+	@Override
+	public void updateStatus(User user) {
+		userMapper.updateStatus(user);
+	 
+		 
+		
+	}
 	
 	
 
@@ -105,5 +117,8 @@ public class UserServiceimpl implements UserService {
 		}
 		return result;
 	}
+ 
+
+	
 
 }

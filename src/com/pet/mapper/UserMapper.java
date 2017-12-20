@@ -7,10 +7,12 @@ import com.pet.pojo.User;
 public interface UserMapper {
 	public void addUser(User user);
 	public User findUser(User user);
+	public User finUserByEmail(String Email);
 	public void delete(Integer id);
-	public void update(User user);
+	public void updateStatus(User user);
 	public List<User> getUserAll();
 	public User getUserById(Integer id);
+	
 	
 
 }

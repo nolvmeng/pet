@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//resource/mailTemplates/activation.st=UTF-8
 encoding//resource/mailTemplates/resetpwd.st=UTF-8
 encoding//src/com/pet/pojo/Adopt.java=UTF-8
 encoding//src/com/pet/util/Property.java=UTF-8

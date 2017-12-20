@@ -200,7 +200,7 @@ public class OSSTest {
         //初始化OSSClient  
         OSSClient ossClient=OSSTest.getOSSClient();  
         //上传文件  
-        String files="G:\\oss\\DSC00025.jpg,G:\\oss\\DSC00113.jpg,G:\\oss\\DSC00120.jpg";  
+        String files="G:\\oss\\mu.jpg";  
                 
        String[] file=files.split(",");  
         for(String filename:file){  

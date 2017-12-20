@@ -32,7 +32,7 @@ public class MailService {
 			ACTIVATE_CONTEXT = "http://"+prop.getProperty("domain.name")
 								+(prop.getProperty("domain.port")==null?null:":"+prop.getProperty("domain.port"))
 								+(prop.getProperty("context")==null?null:prop.getProperty("context"))+
-								"/account/activation/";
+								"/userController/activation.action?key=";
 			
 			RESETPWD_CONTEXT = "http://"+prop.getProperty("domain.name")
 								+(prop.getProperty("domain.port")==null?null:":"+prop.getProperty("domain.port"))
@@ -92,9 +92,10 @@ public class MailService {
     	StringTemplate activation_temp = templateGroup.getInstanceOf("activation");
     	activation_temp.setAttribute("img_base_url", IMG_BASE_URL);
     	activation_temp.setAttribute("email", to);
-    	activation_temp.setAttribute("href", ACTIVATE_CONTEXT+key+"?email="+to);
-    	activation_temp.setAttribute("link", ACTIVATE_CONTEXT+key+"?email="+to);
+    	activation_temp.setAttribute("href", ACTIVATE_CONTEXT+key+"&&email="+to);
+    	activation_temp.setAttribute("link", ACTIVATE_CONTEXT+key+"&&email="+to);
     	sendMail(to, "用户激活", activation_temp.toString());
+    	System.out.println("邮件发送");
     }
     
     /**

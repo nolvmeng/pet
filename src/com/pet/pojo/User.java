@@ -14,6 +14,7 @@ public class User {
 	private String user_avatar;//用户头像
 	private String user_desc;//用户描述
 	private String resetPwdKey;//重置key
+	
 	public int getU_id() {
 		return u_id;
 	}

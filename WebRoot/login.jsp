@@ -41,13 +41,17 @@
                 </div>
                
 			  <button type="submit" class="btn btn-primary block full-width m-b">登录</button> 
-                <button  class="btn btn-primary block full-width m-b"><a href="register.jsp">注册</a></button>
+                <button  class="btn btn-primary block full-width m-b" onclick=javascrtpt:jump()>注册</button>
                
             </form>
            
         </div>
     </div>
-
+<script>
+function jump(){
+ window.location.href="register.jsp";
+}
+</script>
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
