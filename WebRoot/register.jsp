@@ -57,7 +57,7 @@
 									<h6>用户名</h6>
 									<input type="text" placeholder="用户名" name="user_name"/>
 									<h6>密码</h6>
-									<input type="text" placeholder="密码" name="user_pwd"/>
+									<input type="password" placeholder="密码" name="user_pwd"/>
 									<button type="submit" class="hvr-float-shadow">注册</button>
 								</form>
 							</div>

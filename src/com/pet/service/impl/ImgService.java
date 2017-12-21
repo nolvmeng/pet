@@ -83,7 +83,7 @@ public class ImgService {
                 //保存文件  
         		InputStream inputStream = file.getInputStream();
         		Long lenght = file.getSize();//文件长度
-        	//	 UploadManager.uploadByStream2OSS( inputStream, lenght ,details,  bucketName,   folder);
+        		 UploadManager.uploadByStream2OSS( inputStream, lenght ,details,  bucketName,   folder);
               //
             }  
             

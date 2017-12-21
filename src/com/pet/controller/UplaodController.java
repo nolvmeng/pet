@@ -12,14 +12,14 @@ import org.springframework.web.multipart.MultipartFile;
 import com.pet.service.impl.ImgService;
 
 @Controller
-@RequestMapping("/uplaod")
+@RequestMapping("/upload")
 public class UplaodController {
 	
 	@Autowired
 	@Qualifier("imgService")
 	private ImgService ImgService ;
 	
-	@RequestMapping("img")
+	@RequestMapping("/img")
 	public void imgFlie(@RequestParam("file") MultipartFile[] file){
 		System.out.println("laidaozheli");
 		// 判断文件是否为空  
@@ -39,24 +39,23 @@ public class UplaodController {
 	 * 上传并处理来自页面的多个文件
 	 * @param file
 	 */
-	@RequestMapping("imgtest")
+	@RequestMapping("/imgUpload")
 	public void imgtest(@RequestParam("file[]") MultipartFile[] file, HttpSession session){
 		System.out.println("imgtest");
 		// 判断文件是否为空  
 
 		int  object_id = 1 ;
 
-		object_id= (session.getAttribute("post_id")==null)
-			     	?1: Integer.valueOf((session.getAttribute("post_id").toString()));
+		object_id= (session.getAttribute("c_id")==null)
+			     	?1: Integer.valueOf((session.getAttribute("c_id").toString()));
 		
 		
-		
-        	System.out.println(file.length);
+        	System.out.println("文件大小："+file.length);
         	 if (file.length != 0) {  
                  try {  
                   
                   
-                 	ImgService.uploadPhotos(file, "post/", object_id);
+                 //	ImgService.uploadPhotos(file, "post/", object_id);
                  	
                  	
                  } catch (Exception e) {  

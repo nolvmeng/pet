@@ -1,6 +1,8 @@
 package com.pet.pojo;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 public class Cpet {
 	private int c_id;
@@ -10,6 +12,14 @@ public class Cpet {
 	private String desc;//描述
 	private Date ts;//发现时间
 	private String from;//来源
+	private List<Img> imgs;
+	
+	public List<Img> getImgs() {
+		return imgs;
+	}
+	public void setImgs(List<Img> imgs) {
+		this.imgs = imgs;
+	}
 	public int getC_id() {
 		return c_id;
 	}

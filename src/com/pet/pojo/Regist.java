@@ -1,6 +1,7 @@
 package com.pet.pojo;
 
 import java.util.Date;
+import java.util.Set;
 
 public class Regist {
 
@@ -9,6 +10,34 @@ public class Regist {
 	private int c_id;//宠物id
 	private Date ts;//登记时间
 	private String status;//登记状态
+	private User user;
+	private Cpet cpet;
+	
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
+	/**
+	 * @return the cpet
+	 */
+	public Cpet getCpet() {
+		return cpet;
+	}
+	/**
+	 * @param cpet the cpet to set
+	 */
+	public void setCpet(Cpet cpet) {
+		this.cpet = cpet;
+	}
+	
 	public int getR_id() {
 		return r_id;
 	}

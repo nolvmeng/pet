@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pet.mapper.RegistMapper">
-	<!-- <resultMap type="Regist" id="regist-cpet">
+	<resultMap type="Regist" id="regist-cpet-user">
 	<id property="r_id" column="r_id"/>
 	<result property="u_id" column="u_id"/>
 	<result property="c_id" column="c_id"/>
@@ -17,13 +17,47 @@
 	<result property="ts" column="ts"/>
 	<result property="from" column="from"/>
 	</association>
-	</resultMap> -->
-
+	<association property="user" javaType="User">
+	<id property="u_id" column="u_id"/>
+	<result property="user_name" column="user_name"/>
+	<result property="email" column="email"/>
+	<result property="user_pwd" column="user_pwd"/>
+	<result property="user_reg_date" column="user_reg_date"/>
+	<result property="user_status" column="user_status"/>
+	<result property="role" column="role"/>
+	<result property="user_activationKey" column="user_activationKey"/>
+	<result property="user_avatar" column="user_avatar"/>
+	<result property="user_desc" column="user_desc"/>
+	<result property="resetPwdKey" column="resetPwdKey"/>
+	</association>
+	</resultMap> 
+	
+	
+	<!--同步添加登记表  -->
 	<insert id="addRegist" parameterType="Regist">
-		insert into regist values(null,#{u_id},#{c_id},#{ts},#{status})
+		insert into regist(r_id,u_id,c_id) values(null,#{u_id},#{c_id})
 		
 	</insert>
 	
+	<!--根据种类获取宠物列表  -->
+	<select id="getAdoptBycategory" resultType="Regist" resultMap="regist-cpet-user">
+		select	u.u_id,user_name,r.r_id,r.ts,c.c_id,c.nickname,c.category,c.type,c.desc,c.ts,c.from from user u,cpet c,regist r
+		<where>
+			<if test="category!=null and category!=''">
+				and c.category=#{category}
+			</if>
+			 and u.u_id=r.u_id and c.c_id=r.c_id ORDER BY r.r_id
+		</where>
+	</select>
 	
+	<select id="getCpetById" resultType="Regist" resultMap="regist-cpet-user">
+		select	u.u_id,user_name,r.r_id,r.ts,c.c_id,c.nickname,c.category,c.type,c.desc,c.ts,c.from from user u,cpet c,regist r
+		<where>
+			<if test="r_id!=null and r_id!=0">
+				and r.r_id=#{r_id}
+			</if>
+			and u.u_id=r.u_id and c.c_id=r.c_id 
+		</where>
+	</select>
 	
 </mapper>

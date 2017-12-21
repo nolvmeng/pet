@@ -5,6 +5,11 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@page import="com.pet.pojo.Regist" %>
+<%@page import="com.pet.pojo.Img" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.Set" %>
+<%@page import="java.util.Map" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" lang="en">
 
@@ -98,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<!-- Collect the nav links, forms, and other content for toggling -->
 								<div class="collapse navbar-collapse" id="navbar-collapse-1">
 									<ul class="nav navbar-nav">
-										<li class="dropdown-holder active current-page-item Active-manu"><a href="index-2.html"> 首页 </a>
+										<li class="dropdown-holder active current-page-item Active-manu"><a href="<%=path%>/index.action"> 首页 </a>
 											
 										</li>
 
@@ -129,8 +134,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									   
 										<li class="dropdown-holder"><a href="#">宠物领养</a>
 											<ul class="sub-menu">
-												<li><a href="shop.html" class="tran3s">领养列表</a></li>
-												<li><a href="shop-details.html" class="tran3s">宠物详情</a></li>
+												<li><a href="<%=path %>/registController/getAdoptBycategory.action" class="tran3s">领养列表</a></li>
+												
 											</ul>
 										</li>									   										
 									</ul>
@@ -145,8 +150,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div data-src="<%=path%>/images/home/banner-slider-2.jpg">
 						<div class="camera_caption">
 							<div class="container text-center">
-							    <h1 class="wow fadeInUp animated" data-wow-delay="0.2s">吸猫聚集地</h1>
-							    <span class="wow fadeInUp animated" data-wow-delay="0.5s"> 当代中国最大的吸猫网站</span>
+							    <h1 class="wow fadeInUp animated" data-wow-delay="0.2s">宠物交流平台</h1>
+							    <span class="wow fadeInUp animated" data-wow-delay="0.5s"> 让领养代替买卖</span>
 							    <p class="wow fadeInUp animated" data-wow-delay="0.8s">还等什么，赶紧加入吧！！！！！</p>
 								<a href="<%=path%>/registPet.action" class="tran3s wow fadeInLeft animated banner-button-left" data-wow-delay="1s">登记宠物</a>
 								<a href="blog-v1.html" class="tran3s wow fadeInRight animated banner-button-right" data-wow-delay="1s">show出你的宠物心得</a>
@@ -156,8 +161,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div data-src="<%=path%>/images/home/banner-slider-1.jpg">
 						<div class="camera_caption">
 							<div class="container text-center">
-								<h1 class="wow fadeInUp animated" data-wow-delay="0.2s">吸猫聚集地</h1>
-							    <span class="wow fadeInUp animated" data-wow-delay="0.5s"> 当代中国最大的吸猫网站 </span>
+								<h1 class="wow fadeInUp animated" data-wow-delay="0.2s">宠物交流平台</h1>
+							    <span class="wow fadeInUp animated" data-wow-delay="0.5s"> 让领养代替买卖 </span>
 							    <p class="wow fadeInUp animated" data-wow-delay="0.8s">还等什么，赶紧加入吧！！！！！</p>
 								<a href="<%=path%>/registPet.action" class="tran3s wow fadeInLeft animated banner-button-left" data-wow-delay="1s">登记宠物</a>
 								<a href="blog-v1.html" class="tran3s wow fadeInRight animated banner-button-right" data-wow-delay="1s">show出你的宠物心得</a>
@@ -167,8 +172,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div data-src="<%=path%>/images/home/banner-slider-2.jpg">
 						<div class="camera_caption">
 							<div class="container text-center">
-								<h1 class="wow fadeInUp animated" data-wow-delay="0.2s">吸猫聚集地</h1>
-							    <span class="wow fadeInUp animated" data-wow-delay="0.5s"> 当代中国最大的吸猫网站 </span>
+								<h1 class="wow fadeInUp animated" data-wow-delay="0.2s">宠物交流平台</h1>
+							    <span class="wow fadeInUp animated" data-wow-delay="0.5s"> 让领养代替买卖 </span>
 							    <p class="wow fadeInUp animated" data-wow-delay="0.8s">还等什么，赶紧加入吧！！！！！</p>
 								<a href="<%=path%>/registPet.action" class="tran3s wow fadeInLeft animated banner-button-left" data-wow-delay="1s">登记宠物</a>
 								<a href="blog-va.html" class="tran3s wow fadeInRight animated banner-button-right" data-wow-delay="1s">show出你的宠物心得</a>
@@ -346,7 +351,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<h4>近期登记宠物情况</h4>
 						
 					</div>
-
+					<div class="shop-item-wrapper">
+					<div class="row">
+					<%List<Regist> regists = (List)request.getAttribute("regists");
+						Map<Integer,List<Img>> imgs =(Map<Integer,List<Img>>)request.getAttribute("imgs");
+					for(int i=regists.size();i>regists.size()-3;i--){
+											Regist r = regists.get(i-1);
+										%>
 					<div class="col-md-4 col-xs-6 product-item-width">
 								<div class="shop-item-product-wrapper">
 									<div class="shop-item-product">
@@ -355,103 +366,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											 
 										</div>
 										<div class="product">
-											<img src="<%=path%>/images/shop/img-1.png" alt="image">
+											 <img src="http://forpet.oss-cn-shenzhen.aliyuncs.com/post/<%=imgs.get(r.getCpet().getC_id()).get(0).getKey() %>" alt="image"> 
 										</div>
 										<div class="price-and-taitle">
-											<h5><a href="shop-details.html">A1 Cat</a></h5>
-											<h6>小猫刚出生，家里父母实在不同意再养了，现在希望有个好心人领养它，要真心对待的</h6>
+											<h5><a href="<%=path %>/registController/getCpetById.action?r_id=<%=r.getR_id()%>"><%=r.getCpet().getNickname() %></a></h5>
+											<h6><%=r.getCpet().getDesc() %></h6>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-4 col-xs-6 product-item-width">
-								<div class="shop-item-product-wrapper">
-									<div class="shop-item-product">
-										<div class="clear-fix">
-											<a href="#" class="float-left"> </a>
-											 
-										</div>
-										<div class="product">
-											<img src="<%=path%>/images/shop/img-1.png" alt="image">
-										</div>
-										<div class="price-and-taitle">
-											<h5><a href="shop-details.html">A1 Cat</a></h5>
-											<h6>小猫刚出生，家里父母实在不同意再养了，现在希望有个好心人领养它，要真心对待的</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-xs-6 product-item-width">
-								<div class="shop-item-product-wrapper">
-									<div class="shop-item-product">
-										<div class="clear-fix">
-											<a href="#" class="float-left"> </a>
-											 
-										</div>
-										<div class="product">
-											<img src="<%=path%>/images/shop/img-1.png" alt="image">
-										</div>
-										<div class="price-and-taitle">
-											<h5><a href="shop-details.html">A1 Cat</a></h5>
-											<h6>小猫刚出生，家里父母实在不同意再养了，现在希望有个好心人领养它，要真心对待的</h6>
-										</div>
-									</div>
-								</div>
-							</div>
+							<%} %>
 							
-							<div class="col-md-4 col-xs-6 product-item-width">
-								<div class="shop-item-product-wrapper">
-									<div class="shop-item-product">
-										<div class="clear-fix">
-											<a href="#" class="float-left"> </a>
-											 
-										</div>
-										<div class="product">
-											<img src="<%=path%>/images/shop/img-1.png" alt="image">
-										</div>
-										<div class="price-and-taitle">
-											<h5><a href="shop-details.html">A1 Cat</a></h5>
-											<h6>小猫刚出生，家里父母实在不同意再养了，现在希望有个好心人领养它，要真心对待的</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-md-4 col-xs-6 product-item-width">
-								<div class="shop-item-product-wrapper">
-									<div class="shop-item-product">
-										<div class="clear-fix">
-											<a href="#" class="float-left"> </a>
-											 
-										</div>
-										<div class="product">
-											<img src="<%=path%>/images/shop/img-1.png" alt="image">
-										</div>
-										<div class="price-and-taitle">
-											<h5><a href="shop-details.html">A1 Cat</a></h5>
-											<h6>小猫刚出生，家里父母实在不同意再养了，现在希望有个好心人领养它，要真心对待的</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-md-4 col-xs-6 product-item-width">
-								<div class="shop-item-product-wrapper">
-									<div class="shop-item-product">
-										<div class="clear-fix">
-											<a href="#" class="float-left"> </a>
-											 
-										</div>
-										<div class="product">
-											<img src="<%=path%>/images/shop/img-1.png" alt="image">
-										</div>
-										<div class="price-and-taitle">
-											<h5><a href="shop-details.html">A1 Cat</a></h5>
-											<h6>小猫刚出生，家里父母实在不同意再养了，现在希望有个好心人领养它，要真心对待的</h6>
-										</div>
-									</div>
-								</div>
-							</div>
+				</div>
 				</div>
 			</section>
 
@@ -614,9 +540,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- Main js file/jquery -->
 		<script src="<%=path%>/vendor/jquery-2.2.3.min.js"></script>
 		<!-- bootstrap-select.min.js -->
-		<script src="<%=path%>/vendor/bootstrap-select-1.10.0/dist/<%=path%>/js/bootstrap-select.min.js"></script>
+		<script src="<%=path%>/vendor/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>
 		<!-- bootstrap js -->
-		<script src="<%=path%>/vendor/bootstrap/<%=path%>/js/bootstrap.min.js"></script>
+		<script src="<%=path%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 		<!-- camera js -->
 		<script src="<%=path%>/vendor/Camera-master/scripts/camera.min.js"></script>
 		<script src="<%=path%>/vendor/Camera-master/scripts/jquery.easing.1.3.js"></script>

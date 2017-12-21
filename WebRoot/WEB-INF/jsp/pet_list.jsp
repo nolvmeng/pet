@@ -5,6 +5,11 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@page import="com.pet.pojo.Regist" %>
+<%@page import="com.pet.pojo.Img" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.Set" %>
+<%@page import="java.util.Map" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" lang="en">
 
@@ -20,20 +25,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 		<!-- Favicon -->
-		<link rel="icon" type="image/png" sizes="56x56" href="<%=path%>/<%=path%>/images/them-logo/favicon-1.png">
+		<link rel="icon" type="image/png" sizes="56x56" href="<%=path%>/<%=path%>/<%=path%>/images/them-logo/favicon-1.png">
 		
 		<!-- Main style sheet -->
 		<link rel="stylesheet" href="<%=path%>/css/style.css">
 		<!-- responsive style sheet -->
 		<link rel="stylesheet" href="<%=path%>/css/responsive.css">
-		
-		
-		<link href="manage/css/bootstrap.min.css" rel="stylesheet">
-    <link href="manage/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="manage/css/animate.css" rel="stylesheet">
-    <link href="manage/css/plugins/dropzone/basic.css" rel="stylesheet">
-    <link href="manage/css/plugins/dropzone/dropzone.css" rel="stylesheet">
-    <link href="/manage/css/style.css" rel="stylesheet">
+
 		<!-- Fix Internet Explorer ______________________________________-->
 
 		<!--[if lt IE 9]>
@@ -41,28 +39,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<script src="<%=path%>/vendor/html5shiv.js"></script>
 			<script src="<%=path%>/vendor/respond.js"></script>
 		<![endif]-->
-		
-		
 	</head>
-<body>
-
-
+<body><body>
+	
 		<div class="main-page-wrapper">
 
 			<!-- Header _________________________________ -->
 			<section class="header-section">
-				<div class="top-header">
+				<div class="top-header ">
 					<div class="container">
 						<div class="clear-fix">
 							<ul class="float-left top-header-left">
-								<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> FoodFarm, W 35th St, New York</a></li>
-								<li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> mypet_info@gmail.com</a></li>
+								
 							</ul>
 							<ul class="float-right top-header-right">
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+								
+								<li><a href="#">欢迎您！周博</a></li>
+								
+								<li><a href="login.html">登出</i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -73,7 +67,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="container">
 						<div class="main-menu clear-fix">
 
-							
+							<div class="search-button-content float-right">
+								
+					   			<button class="search b-p-bg-color" id="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+					   			<div class="search-box tran5s" id="searchWrapper">
+					   				<button id="close-button" class="p-color"><i class="fa fa-times" aria-hidden="true"></i></button>
+					   				<div class="container">
+					   					<img src="<%=path%>/images/them-logo/them-main-logo-1.png" alt="Logo">
+					   					<form action="#">
+					   						<input type="text" placeholder="Search....">
+					   						<button class="p-bg-color"><i class="fa fa-search" aria-hidden="true"></i></button>
+					   					</form>
+					   				</div>
+					   			</div> <!-- /.search-box -->
+					   		</div> <!-- /.right-content -->
 					   		<div class="them-logo float-left"><a href="#"><img src="<%=path%>/images/them-logo/them-main-logo-1.jpg" alt="logo"></a></div>
 
 							<!-- Menu -->
@@ -91,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<!-- Collect the nav links, forms, and other content for toggling -->
 								<div class="collapse navbar-collapse" id="navbar-collapse-1">
 									<ul class="nav navbar-nav">
-										<li class="dropdown-holder active current-page-item Active-manu"><a href="<%=path%>/index.action"> 首页 </a>
+										<li class="dropdown-holder current-page-item Active-manu"><a href="<%=path%>/index.action"> 首页 </a>
 											
 										</li>
 
@@ -148,17 +155,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="row">
 									<div class="col-sm-8 col-xs-12">
 										<div class="">
-											<h1>登记</h1>
-											<p>茫茫人海中，如若看到流浪的小猫小狗，请来登记一下，让它能有一个家</p>
+											<h3>宠物领养</h3>
+											<p>让宠物能有个好的家</p>
 										</div>
 									</div>
-									<div class="col-sm-4 col-xs-12">
-										<div class="">
-											<a href="#" class="hvr-float-shadow">了解详情</a>
-										</div>
-									</div>
+									
 								</div>
-								<img src="<%=path%>/images/about/dog-1.png" alt="">
+								
 							</div>
 						</div>
 					</div>
@@ -168,130 +171,80 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul>
 							<li><a href="index.html">首页</a></li>
 							<li><span>-</span></li>
-							<li><a href="faq.html">登记</a></li>
+							<li><a href="shop.html">宠物领养</a></li>
 							<li><span>-</span></li>
-							<li><a href="#">登记</a></li>
+							<li><a href="#">宠物列表</a></li>
 						</ul>
 					</div>
 				</div>
 			</section>
 
-			<!-- Faq ____________________________ -->
-			<section class="faq-page">
+			<!-- Shop ____________________________ -->
+			<section class="shop-page">
 				<div class="container">
-					<div class="row">
-						
-						<div class="col-md-6 col-xs-12">
-							<div class="request-form">
-								<img src="<%=path%>/images/faq-img-1.png" alt="">
-								<h2>登记信息</h2>
-								<span></span>
-								<form action="<%=path%>/cpetController/addCpet.action" method="post" name="form1" id="form1" onchange="dealValue()">
-									<h6>宠物昵称</h6>
-									<input type="text" placeholder="Name" id="nickname" name="nickname" >
-									<h6>种类（猫狗）</h6>
-									<input type="text" placeholder="category" id="category" name="category">
-									<h6>类型</h6>
-									<input type="text" placeholder="type" name="type" id="type">
-									<h6>发现时间</h6>
-									<input type="text" placeholder="time" name="ts" id="ts">
-									<h6>哪里发现</h6>
-									<input type="text" placeholder="from" name="from" id="from">
-									<h6>描述</h6>
-									<textarea placeholder="Type your message" name="desc" id="desc"></textarea>
-								 
-									
-								</form>
+					<div class="shop-item-wrapper">
+						<div class="row top-select-and-form-section">
+							<div class="col-lg-3  col-sm-4 col-xs-12">
+								<div class="">
+									<form action="#">
+										<input type="text" placeholder="Search Product ...">
+										<button><i class="fa fa-search" aria-hidden="true"></i></button>
+									</form>
+								</div>
+							</div>
+							<div class="col-lg-6  col-sm-4  col-xs-12">
+								<div class="text-center">
+									<p>显示12个结果</p>
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-4  col-xs-12">
+								<ul class="select-section">
+									<li>
+									<form id="categoryform" method="get" action="<%=path %>/registController/getAdoptBycategory.action">
+										<select class="selectpicker" name="category" onchange="submitForm();">
+											<option value="">全部显示</option>
+											<option value="cat">猫</option>
+											<option value="dog">狗</option>
+											
+										</select>
+										</form>
+									</li>
+								</ul> <!-- /.top-select-section -->
 							</div>
 						</div>
 						
-						 <script type="text/javascript">
-				    function dealValue( )
-                        {    // var mount=document.getElementsByName("nickname").innerText;
-							   var nickname=document.getElementById('nickname') ;
-							   var name = document.getElementById("name");
-						       name.value=nickname.value
-						       
-						       var category=document.getElementById('category');
-						       var cate=document.getElementById("cate");
-						       cate.value=category.value;
-						       
-						       var type=document.getElementById("type");
-						       var ty=document.getElementById("ty");
-						       ty.value=type.value;
-						      
-						      	var ts=document.getElementById("ts");
-						      	var time=document.getElementById("time");
-						      	time.value=ts.value;
-						      	
-						      	var from=document.getElementById("from");
-						      	var fr=document.getElementById("fr");
-						      	fr.value=from.value;
-						      	
-						      	var desc=document.getElementById("desc");
-						      	var de=document.getElementById("de");
-						      	de.value=desc.value;
-						    /* if (isNaN(v))
-						    {
-						        alert('not a number');
-						        return;
-						    }
-						    var d=parseInt(v);
-						    var b=parseInt(mount);
-						    
-						    if(d>b)
-						    {  
-						        tx.value=b;
-						        return;
-						    }  */
-						} 
-				 </script>
 						
-						<div class="wrapper wrapper-content animated fadeIn">
-            
-                <div class="col-md-6 col-xs-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h3>上传图片</h3>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="form_file_upload.html#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="form_file_upload.html#">Config option 1</a>
-                                </li>
-                                <li><a href="form_file_upload.html#">Config option 2</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="ibox-content">
-                        <form id="my-awesome-dropzone" class="dropzone"  method="post" action="<%=path%>/cpetController/addCpet.action" enctype="multipart/form-data" name="form2" >
-                            <div class="dropzone-previews"></div>
-                            
-                            <input type="hidden"  name="nickname" id="name">
-                             <input type="hidden"  name="category" id="cate">
-                              <input type="hidden"  name="type" id="ty">
-                               <input type="hidden"  name="ts" id="time">
-								 <input type="hidden"  name="from" id="fr">
-								  <input type="hidden"  name="desc" id="de">
-								  	
-                            <button type="submit" class="btn btn-primary pull-right">上传图片</button>
-                        </form>
-                       <a href="<%=path %>/index.action" class="btn btn-primary pull-right">&nbsp;&nbsp;提交&nbsp;&nbsp;</a> 
-                    </div>
-                </div>
-           </div>
-           
-           
-            
-
-            </div>
-						
-					</div>
+						<div class="row">
+						<%List<Regist> regists = (List)request.getAttribute("regists");
+						Map<Integer,List<Img>> imgs =(Map<Integer,List<Img>>)request.getAttribute("imgs");
+										for(Regist g:regists){%>
+							<div class="col-md-4 col-xs-6 product-item-width">
+								<div class="shop-item-product-wrapper">
+									<div class="shop-item-product">
+										<div class="clear-fix">
+											<a href="#" class="float-left"> </a>
+											 
+										</div>
+										<div class="product">
+											<img src="http://forpet.oss-cn-shenzhen.aliyuncs.com/post/<%=imgs.get(g.getCpet().getC_id()).get(0).getKey() %>" alt="image">
+										</div>
+										<div class="price-and-taitle">
+											<h5><a href="<%=path %>/registController/getCpetById.action?r_id=<%=g.getR_id() %>"><%=g.getCpet().getNickname()  %></a></h5>
+											<h6><%=g.getCpet().getDesc() %></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<%} %>
+							
+						</div>
+						<ul class="shop-page-prev-next-button text-center">
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>	<!-- / .shop-item-wrapper -->
 				</div>
 			</section>
 
@@ -378,8 +331,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<div id="loader-wrapper">
 			<div id="loader"></div>
 		</div>
-
-
+		
+		<script>
+		function submitForm(){
+		//获取form表单对象
+    	var form = document.getElementById("categoryform");
+    	form.submit();//form表单提交
+		}
+</script>
 <!-- js file -->
 		<!-- Main js file/jquery -->
 		<script src="<%=path%>/vendor/jquery-2.2.3.min.js"></script>
@@ -405,61 +364,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="<%=path%>/vendor/circle-progress.js"></script>
 		<!-- Style js -->
 		<script src="<%=path%>/js/custom.js"></script>
-		
-		<!-- Mainly scripts -->
-    <script src="manage/js/jquery-2.1.1.js"></script>
-    <script src="manage/js/bootstrap.min.js"></script>
-    <script src="manage/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="manage/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="manage/js/inspinia.js"></script>
-    <script src="manage/js/plugins/pace/pace.min.js"></script>
-
-    <!-- DROPZONE -->
-    <script src="manage/js/plugins/dropzone/dropzone.js"></script>
-    
-     <script>
-        $(document).ready(function(){
-
-            Dropzone.options.myAwesomeDropzone = {
-
-                autoProcessQueue: false,
-                uploadMultiple: true,
-                parallelUploads: 100,
-                maxFiles: 100,
-
-                // Dropzone settings
-                init: function() {
-                    var myDropzone = this;
-
-                    this.element.querySelector("button[type=submit]").addEventListener("click", function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        myDropzone.processQueue();
-                    });
-                    this.on("sendingmultiple", function() {
-                    });
-                    this.on("successmultiple", function(files, response) {
-                    });
-                    this.on("errormultiple", function(files, response) {
-                    });
-                }
-
-            }
-
-       });
-
-    </script>
-    
-    <script type="text/javascript" language="javascript">
-    	function submitform(){
-    	
-    		var form1 = document.getElementById("form1");
-    		var form2 = document.forms[1];
-    	//	form1.submit();
-    		form2.submit();;
-    	}
-    </script>
 </body>
 </html>

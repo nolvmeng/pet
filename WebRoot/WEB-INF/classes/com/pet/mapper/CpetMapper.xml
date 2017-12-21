@@ -3,7 +3,22 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pet.mapper.CpetMapper">
 	
-
+	<resultMap type="Cpet" id="cpet-img">
+				<id property="c_id" column="c_id"/>
+	<result property="nickname" column="nickname"/>
+	<result property="category" column="category"/>
+	<result property="type" column="type"/>
+	<result property="desc" column="desc"/>
+	<result property="ts" column="ts"/>
+	<result property="from" column="from"/>
+	<collection property="imgs" ofType="Img">
+	<id property="img_id" column="img_id"></id>
+					<result property="key" column="key"></result>
+					<result property="object_id" column="object_id"></result>
+					<result property="desc" column="object_id"></result>
+	</collection>
+	</resultMap>
+	
 	<insert id="addCpet" parameterType="Cpet" useGeneratedKeys="true" >
 	<!-- <selectKey keyProperty="c_id" resultType="int" order="AFTER">
             SELECT LAST_INSERT_ID() AS ID 
@@ -14,6 +29,8 @@
 		</selectKey> 
 	</insert>
 	
-	
+	<select id="getImgByCid" parameterType="Cpet" resultMap="cpet-img">	
+		select i.object_id,i.key from img i,cpet c where c_id=#{c_id} and i.object_id=c.c_id
+	</select>
 	
 </mapper>

@@ -70,8 +70,7 @@ public class UserServiceimpl implements UserService {
 			
 	}
 
- 
-
+	
 	@Override
 	public User findUser(User user) {
 		// TODO Auto-generated method stub

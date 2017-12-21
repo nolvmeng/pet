@@ -41,7 +41,7 @@
                 </div>
                
 			  <button type="submit" class="btn btn-primary block full-width m-b">登录</button> 
-                <button  class="btn btn-primary block full-width m-b" onclick=javascrtpt:jump()>注册</button>
+                <input type="button"  class="btn btn-primary block full-width m-b" onclick=javascrtpt:jump() value="注册"/>
                
             </form>
            

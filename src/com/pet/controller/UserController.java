@@ -50,7 +50,7 @@ public class UserController {
 		userService.addUser(user, map);
 		mailService.sendAccountActivationEmail(user.getEmail(),map.get("key").toString());//发送激活邮件
 		session.setAttribute("uid", map.get("uid"));
-		mav.setViewName("redirect:/login.jsp");//后期改跳转邮件发送提示页
+		mav.setViewName("redirect:/EmailSuccess.jsp");//后期改跳转邮件发送提示页
 		
 		return mav;
 	}
@@ -69,24 +69,27 @@ public class UserController {
 		if(realKey.equals(key)&&realEmail.equals(email)){
 			user.setUser_status(0);
 			userService.updateStatus(user);//更新状态
-			mav.setViewName("activationSuccessful");
+			mav.setViewName("redirect:/login.jsp");
 		}else mav.setViewName("error");
 	
 		return mav;
 	}
 	
-	
-	
 	@RequestMapping("/findUser")
-	public ModelAndView findUser(HttpServletRequest request, HttpServletResponse response,User user)throws Exception{
+	public ModelAndView findUser(HttpServletRequest request, HttpServletResponse response,HttpSession session,User user)throws Exception{
 		
 		ModelAndView mav=new ModelAndView();
-		if(userService.findUser(user) != null)
+		User u = userService.findUser(user);
+		if(u != null)
 			{
-			User u = userService.findUser(user);
-			request.getSession().setAttribute("u", u);
-		mav.setViewName("index");}
+		//	User u = userService.findUser(user);
+			session.setAttribute("u", u);
+			//User o = (User)session.getAttribute("u");//获得u_id
+		//	System.out.println("看这里"+o.getU_id());
+			
+		mav.setViewName("redirect:/index.action");}
 		else mav.setViewName("redirect:/login.jsp");
 		return mav;
 	}
+	
 }
