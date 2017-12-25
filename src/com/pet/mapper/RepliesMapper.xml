@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pet.mapper.RepliesMapper">
+    <resultMap type="com.pet.pojo.Post" id="postResultMap">
+	<id  property="post_id" column="p_post_id"></id>
+				<result property="ts" column="p_ts"></result>
+				<result property="type" column="type"></result>
+				<result property="title" column="title"></result>
+				<result property="context" column="p_context"></result>
+				<result property="tag" column="tag"></result>
+				<collection property="replies" ofType="com.pet.pojo.Replies">
+					<id property="h_id" column="h_id"></id>
+					<result property="post_id" column="post_id"></result>
+					<result property="r_id" column="r_id"></result>
+					<result property="ts" column="ts"></result>
+					<result property="context" column="context"></result>
+					<result property="u_id" column="u_id"></result>
+				</collection>
+	</resultMap>
+
+	<!-- 查某主贴内容和其回复 -->
+	<select id="getAllReplies" parameterType="int" resultMap="postResultMap">
+		select post.author,post.context as p_context,post.post_id as p_post_id,post.tag,post.title,post.ts as p_ts,post.type,replies.context,replies.h_id,replies.post_id,replies.r_id,replies.ts,replies.u_id  from pet.post left outer join pet.replies on  post.post_id=replies.post_id where post.post_id=#{value}
+	</select>
+	<select id="getpost_img" parameterType="int" resultType="com.pet.pojo.Img">
+		select * from img where object_id=#{value}
+	</select>
+	
+	<!-- 插入新的回贴 -->
+	<insert id="replies_Submit" parameterType="com.pet.pojo.Replies">
+	<if test="!r_id!='' ">
+		insert into replies(post_id,context,u_id) values(#{post_id},#{context},#{u_id})
+	</if>
+	<if test="r_id!=null and r_id!='' ">
+		insert into replies(post_id,r_id,context,u_id) values(#{post_id},#{r_id},#{context},#{u_id})
+	</if>
+	
+	</insert>
+	
+	<!-- 删除回帖 -->
+	<select id="getReplies_hid" resultType="java.lang.String">      
+		select h_id from replies where r_id in 
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		<!--  or h_id=#{value} -->
+	</select>
+	<delete id="replies_Delete">             
+	    delete from replies where h_id in 
+    	<foreach collection="list" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	
+</mapper>

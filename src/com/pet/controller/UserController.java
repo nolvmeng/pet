@@ -32,13 +32,16 @@ public class UserController {
 	private MailService mailService;
 	
 	@RequestMapping("/getUserById")
-	public ModelAndView getUserById()throws Exception{
-		User user=userService.getUserById(1);
+	public ModelAndView getUserById(HttpServletRequest request, HttpServletResponse response)throws Exception{
+    	User u = (User)request.getSession().getAttribute("u");
+		User user=userService.getUserById(u.getU_id());
+		System.out.println(u.getU_id());
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("user", user);
-		mav.setViewName("showUser");
+		mav.setViewName("UMessage");
 		return mav;
 	}
+
 	
 	
 	
@@ -50,7 +53,7 @@ public class UserController {
 		userService.addUser(user, map);
 		mailService.sendAccountActivationEmail(user.getEmail(),map.get("key").toString());//发送激活邮件
 		session.setAttribute("uid", map.get("uid"));
-		mav.setViewName("redirect:/EmailSuccess.jsp");//后期改跳转邮件发送提示页
+		mav.setViewName("EmailSuccess");//后期改跳转邮件发送提示页
 		
 		return mav;
 	}
@@ -69,12 +72,20 @@ public class UserController {
 		if(realKey.equals(key)&&realEmail.equals(email)){
 			user.setUser_status(0);
 			userService.updateStatus(user);//更新状态
-			mav.setViewName("redirect:/login.jsp");
+			mav.setViewName("activationSuccessful");
 		}else mav.setViewName("error");
 	
 		return mav;
 	}
-	
+	/**
+	 * 用于登录
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/findUser")
 	public ModelAndView findUser(HttpServletRequest request, HttpServletResponse response,HttpSession session,User user)throws Exception{
 		

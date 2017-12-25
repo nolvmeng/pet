@@ -49,94 +49,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<div class="main-page-wrapper">
 
-			<!-- Header _________________________________ -->
 			<section class="header-section">
-				<div class="top-header">
-					<div class="container">
-						<div class="clear-fix">
-							<ul class="float-left top-header-left">
-								<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> FoodFarm, W 35th St, New York</a></li>
-								<li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> mypet_info@gmail.com</a></li>
-							</ul>
-							<ul class="float-right top-header-right">
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-google" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				<!-- Header _________________________________ -->
+				<jsp:include page="./inclu/header.jsp" />
 				
 				<!-- Theme Main Menu ____________________________ -->
-				<div class="theme-main-menu">
-					<div class="container">
-						<div class="main-menu clear-fix">
-
-							
-					   		<div class="them-logo float-left"><a href="#"><img src="<%=path%>/images/them-logo/them-main-logo-1.jpg" alt="logo"></a></div>
-
-							<!-- Menu -->
-							<nav class="navbar">
-								<!-- Brand and toggle get grouped for better mobile display -->
-								<div class="navbar-header">
-									<button type="button" class="navbar-toggle collapsed tran3s" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-										<span class="sr-only tran3s">Toggle navigation</span>
-										<span class="icon-bar tran3s"></span>
-										<span class="icon-bar tran3s"></span>
-										<span class="icon-bar tran3s"></span>
-									</button>
-								</div>
-								
-								<!-- Collect the nav links, forms, and other content for toggling -->
-								<div class="collapse navbar-collapse" id="navbar-collapse-1">
-									<ul class="nav navbar-nav">
-										<li class="dropdown-holder active current-page-item Active-manu"><a href="<%=path%>/index.action"> 首页 </a>
-											
-										</li>
-
-										<li class="dropdown-holder"><a href="#">Gallery</a>
-											<ul class="sub-menu">
-												<li><a href="gallery-v1.html" class="tran3s">Gallery Version one</a></li>
-												<li><a href="gallery-v2.html" class="tran3s">Gallery Version Two</a></li>
-												<li><a href="gallery-v3.html" class="tran3s">Gallery Version Three</a></li>
-											</ul>
-										</li>
-									   
-										<li class="dropdown-holder"><a href="#">pages</a>
-											<ul class="sub-menu">
-												<li><a href="about-us.html" class="tran3s">About Us</a></li>
-												<li><a href="team.html" class="tran3s">Our Team</a></li>
-												<li><a href="testimonial.html" class="tran3s">Testimonial</a></li>
-												<li><a href="faq.html" class="tran3s">Faq</a></li>
-												<li><a href="404.html" class="tran3s">Error page</a></li>
-											</ul>
-										</li>
-
-										<li class="dropdown-holder"><a href="#">Services</a>
-											<ul class="sub-menu">
-												<li><a href="service-v1.html" class="tran3s">Services</a></li>
-												<li><a href="service-details.html" class="tran3s">Service Details</a></li>
-											</ul>
-										</li>
-
-										<li class="dropdown-holder"><a href="blog-v1.html" class="tran3s">论坛</a>
-											
-										</li>
-									   
-										<li class="dropdown-holder"><a href="#">宠物领养</a>
-											<ul class="sub-menu">
-												<li><a href="<%=path %>/registController/getAdoptBycategory.action" class="tran3s">领养列表</a></li>
-											</ul>
-										</li>
-									   
-										
-									</ul>
-								</div><!-- /.navbar-collapse -->
-							</nav>
-						</div> <!-- / menu-skew-div -->
-					</div> <!-- /.container main-menu -->
-				</div> <!-- /.main-menu -->
+				<jsp:include page="./inclu/MainMenu_1.jsp" />
 			</section>
 
 			<!-- Theme Inner Banner ____________________________ -->
@@ -295,76 +213,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</section>
 
-			<!-- Footer ____________________________ -->
-			<footer>
-				<div class="container">
-					<div class="top-footer row">
-						<div class="col-md-5 col-sm-7 col-xs-12 footer-logo">
-							<a href="#"><img src="<%=path%>/images/them-logo/them-main-logo-2.jpg" alt="Logo"></a>
-							<p><span class="p-color">myPet</span> was established in 2017 by Pet business veterans, Rod Davies and Matthew Levington, the journey began when founders Matthew Levington and Rod Davies, met up in 2017 over a beer</p>
-							<ul class="icon">
-								<li><a href="" class="tran3s"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="" class="tran3s"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-								<li><a href="" class="tran3s"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-								<li><a href="" class="tran3s"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							</ul>
-
-							<ul class="policy">
-								<li><a href="" class="tran3s">Privacy Policy </a></li>
-								<li><a>|</a></li>
-								<li><a href="" class="tran3s">Legal Policy</a></li>
-							</ul>
-						</div> <!-- /.footer-logo -->
-
-						<div class="col-md-4 col-sm-5 col-xs-12 footer-list">
-							<h5>Important Links</h5>
-
-							<ul>
-								<li><a href="#" class="tran3s">Support</a></li>
-								<li><a href="about-us-v1.html" class="tran3s">About us </a></li>
-								<li><a href="project-v1.html" class="tran3s">Project</a></li>
-								<li><a href="shop.html" class="tran3s">Shop</a></li>
-								<li><a href="#" class="tran3s">Performance</a></li>
-								<li><a href="blog-v1.html" class="tran3s">News</a></li>
-								<li><a href="#" class="tran3s">Pet Health Food</a></li>
-							</ul>
-							<ul>
-								<li><a href="#" class="tran3s">Pet</a></li>
-								<li><a href="#" class="tran3s">Our History</a></li>
-								<li><a href="#" class="tran3s">What We Do</a></li>
-								<li><a href="#" class="tran3s">Living Areas</a></li>
-								<li><a href="#" class="tran3s">Pet Product</a></li>
-								<li><a href="contact-us.html" class="tran3s">Contact us</a></li>
-							</ul>
-						</div> <!-- /.footer-list -->
-
-						<div class="col-md-3 col-xs-12 footer-news">
-							<h5>News Update</h5>
-
-							<ul>
-								<li>
-									<h6><a href="blog-details.html" class="tran3s">Prefinished Solid Hardwood Flooring</a></h6>
-									<span>january 02,2017</span>
-								</li>
-								<li>
-									<h6><a href="blog-details.html" class="tran3s">Latst pet care in summer 12 care them well</a></h6>
-									<span>january 02,2017</span>
-								</li>
-							</ul>
-						</div> <!-- /.footer-news -->
-					</div> <!-- /.top-footer -->
-				</div> <!-- /.container -->
-
-				<div class="bottom-footer">
-					<div class="container">
-						<p class="float-left">Copyright &copy; 2017 <a href="#" class="tran3s p-color"> myPet</a> All Rights Reserved by <a href="https://themeforest.net/user/unifytheme/portfolio" class="tran3s p-color" target="_blank"> Unifytheme </a></p>
-						<form action="#" class="float-right">
-							<input type="text" placeholder="Your Email">
-							<button class="tran3s p-bg-color">Subscribe</button>
-						</form>
-					</div> <!-- /.container -->
-				</div> <!-- /.bottom-footer -->
-			</footer>
+			     <!--footer  -->
+        <jsp:include page="./inclu/footer.jsp" />
 			
 		</div> <!-- /.main-page-wrapper -->
 		

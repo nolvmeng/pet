@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>激活成功</title>
-    
+    <meta http-equiv="refresh" content="1.3;url=<%=path %>/login.jsp">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    

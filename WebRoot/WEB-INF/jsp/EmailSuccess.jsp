@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'EmailSuccess.jsp' starting page</title>
+    <title>激活邮件已发送</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -54,12 +54,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
 	<div class="imgtest">
-		<img src="images/dui.jpg">
+		<img src="<%=path %>/images/dui.jpg">
 	</div>
 	<div class="texr-one"><h4>邮件已发送成功！请前往邮箱激活</h4></div>
 	<div class="butt">
-		<input class="button1" type="button" name="" value="重新发送">
-		<input class="button2" type="button" name="" value="返回">
+		未收到？<input class="button1" type="button" name="" value="重新发送">
+	<!-- 	<input class="button2" type="button" name="" value="返回"> -->
 	</div>	
 </body>
 </html>

@@ -58,9 +58,6 @@ public class RegistController {
 		if(registService.getCpetById(r_id)!=null){
 			Regist regist = registService.getCpetById(r_id);
 			
-			
-			
-			
 			if(regist.getCpet().getCategory().equals("cat"))
 			{
 				Cpet cpet =regist.getCpet();

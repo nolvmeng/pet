@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.pet.mapper.PostMapper">
+
+	<!-- 查主贴 -->
+	<select id="getPostAll" parameterType="com.pet.pojo.Post" resultMap="postResultMap">
+		select * from pet.post left outer join pet.img on post.post_id = img.object_id
+	</select>
+	
+	<!-- 发帖  -->
+	<insert id="post_Submit" parameterType="com.pet.pojo.Post" useGeneratedKeys="true" keyProperty="post_id">
+		insert into post(author,type,title,context,tag) values(#{author},#{type},#{title},#{context},#{tag})
+	</insert>
+	<!-- <insert id="img_Submit" parameterType="pojo.Img">
+		insert into img(img.key,object_id) values(#{key},#{object_id})
+	</insert> -->
+	<insert id="img_Submit" parameterType="java.util.List">
+	insert into img(img.key,object_id) values
+		<foreach collection="list" item="item" separator="," >
+			(#{item.key},#{item.object_id})
+		</foreach>
+	</insert>
+	
+	<resultMap type="com.pet.pojo.Post" id="postResultMap">
+	<id  property="post_id" column="post_id"></id>
+				<result property="ts" column="ts"></result>
+				<result property="type" column="type"></result>
+				<result property="title" column="title"></result>
+				<result property="context" column="context"></result>
+				<result property="tag" column="tag"></result>
+				<collection property="img" ofType="com.pet.pojo.Img">
+					<id property="img_id" column="img_id"></id>
+					<result property="key" column="key"></result>
+					<result property="desc" column="desc"></result>
+				</collection>
+	</resultMap>
+	
+	<!-- 删除主贴 -->
+	<select id="getReplies_hid" resultType="java.lang.String">
+	    select h_id from replies,img where post_id=#{value}
+	</select>
+	<delete id="img_Delete" parameterType="int">             
+	    delete from img where object_id=#{value};
+	</delete>
+	<delete id="post_Delete" parameterType="int">             
+	    delete from post where post_id=#{value};
+	</delete>
+</mapper>
