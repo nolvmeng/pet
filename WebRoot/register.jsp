@@ -51,14 +51,16 @@
 								
 								<h2>注册信息</h2>
 								
-								<form action="${pageContext.request.contextPath}/userController/addUser.action" method="post">
+								<form action="${pageContext.request.contextPath}/userController/addUser.action" method="post" >
 									<h6>邮箱</h6>
-									<input type="text" placeholder="邮箱" name="email"/>
+									<input type="text"  placeholder="邮箱" id="email" name="email"/>
 									<h6>用户名</h6>
-									<input type="text" placeholder="用户名" name="user_name"/>
+									<input type="text" placeholder="用户名" id ="user_name" name="user_name" onblur="check();" />
+									<label id="user_ti"></label>
+									  
 									<h6>密码</h6>
 									<input type="password" placeholder="密码" name="user_pwd"/>
-									<button type="submit" class="hvr-float-shadow">注册</button>
+									<button id="button_id" type="submit" class="hvr-float-shadow">注册</button>
 								</form>
 							</div>
 						</div>
@@ -81,12 +83,15 @@
 	 	<div id="loader-wrapper">
 			<div id="loader"></div>
 		</div>
-	
+		
+		
+	 
 
 
 		<!-- js file -->
 		<!-- Main js file/jquery -->
 		<script src="vendor/jquery-2.2.3.min.js"></script>
+		 
 		<!-- bootstrap-select.min.js -->
 		<script src="vendor/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>
 		<!-- bootstrap js -->
@@ -109,6 +114,39 @@
 		<script type="text/javascript" src="vendor/circle-progress.js"></script>
 		<!-- Style js -->
 		<script src="js/custom.js"></script>
+		
+		 <script type="text/javascript">  
+        function check() {  
+            var userTest = document.getElementById("email");
+         var userName = $.trim($("#user_name").val());  
+           // userTest.value=userName ;
+
+		    $.ajax({
+		    
+		        data:"user_name=" + userName,
+		        type:"POST",
+		        url:"userController/isExist.action",
+		        dataType:"json", 
+		         //告诉JQUERY返回的数据格式(注意此处数据格式一定要与提交的controller返回的数据格式一致,不然不会调用回调函数complete)  
+		          complete:function(msg) {  
+                if (eval("(" + msg.responseText + ")")) {  
+                  // userTest.value="有";
+                     $("#user_ti").html("<font color='red'>用户名已存在</font>");    
+                      $("#button_id").attr('disabled',true);  
+                } else {  
+                  // userTest.value="dd";  
+                   $("#user_ti").html("<font color='green'>用户名可用</font>");
+                       $("#button_id").attr('disabled',false);  
+                }  
+            }//定义交互完成,并且服务器正确返回数据时调用回调函数   
+        });    
+		     
+             
+             
+        }  
+         
+       
+    </script>  
 
 	</body>
 </html>

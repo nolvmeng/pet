@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											
 										</li>
 									   
-										<li class="dropdown-holder"><a href="#">宠物领养</a>
+										<li class="dropdown-holder"><a href="<%=path %>/registController/getAdoptBycategory.action">宠物领养</a>
 											<ul class="sub-menu">
 												<li><a href="<%=path %>/registController/getAdoptBycategory.action" class="tran3s">领养列表</a></li>
 												

@@ -97,8 +97,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="form-group"><label class="col-sm-2 control-label">注册时间</label>
                                     <div class="col-sm-10"><input type="text" class="form-control" value="<%=DateToStr.convertDate(user.getUser_reg_date())%>" readonly="true"></div>
                                 </div>
-                                <div class="form-group"><label class="col-sm-2 control-label">用户状态</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" value=""></div>
+                                
+                                <div class="form-group"><label class="col-sm-2 control-label">地址</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control" value="<%if(user.getUser_info().getProvince()!=null){ %><%=user.getUser_info().getProvince()%><%=user.getUser_info().getCity()%><%=user.getUser_info().getAddress()%><%} %>"></div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">角色</label>
                                     <div class="col-sm-10"><input type="text" class="form-control" value=""></div>

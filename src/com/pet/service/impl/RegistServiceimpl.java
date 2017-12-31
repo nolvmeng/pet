@@ -17,19 +17,23 @@ public class RegistServiceimpl implements RegistService {
 	private RegistMapper registMapper;
 	
 	@Override
-	public void addRegist(Regist regist) {
+	public Integer addRegist(Regist regist) {
 		// TODO Auto-generated method stub
 		System.out.println("============================"+regist.getC_id());
-		registMapper.addRegist(regist);
+		return registMapper.addRegist(regist);
 		
 	}
 
 	@Override
 	public List<Regist> getAdoptBycategory(String category) {
 		// TODO Auto-generated method stub
-		Cpet cpet = new Cpet();
-		cpet.setCategory(category);
 		
+		/*if("all".equals(category))
+			return registMapper.get*/
+		
+		
+		Cpet cpet = new Cpet();
+		cpet.setCategory(category); 
 		System.out.println("kanzheli"+category);
 		if(registMapper.getAdoptBycategory(cpet)!=null){
 			return registMapper.getAdoptBycategory(cpet);

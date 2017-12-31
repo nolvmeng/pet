@@ -30,7 +30,7 @@
 	</insert>
 	
 	<select id="getImgByCid" parameterType="Cpet" resultMap="cpet-img">	
-		select i.object_id,i.key from img i,cpet c where c_id=#{c_id} and i.object_id=c.c_id
+		select * from img i,cpet c where c_id=#{c_id} and i.object_id=c.c_id
 	</select>
 	
 </mapper>

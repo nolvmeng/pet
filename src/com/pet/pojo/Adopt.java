@@ -7,6 +7,29 @@ public class Adopt {
 	private int r_id;//宠物登记id
 	private int adopter;//领养人
 	private Date ts;
+	private String way;
+	private String status;
+	private String message;
+	
+	 
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getWay() {
+		return way;
+	}
+	public void setWay(String way) {
+		this.way = way;
+	}
 	/**
 	 * @return the a_id
 	 */

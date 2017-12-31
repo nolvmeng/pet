@@ -34,27 +34,34 @@ public class RegistController {
 		
 		List<Regist> regists = registService.getAdoptBycategory(category);
 		Map<Integer, List<Img>> map = new HashMap<Integer, List<Img>>();
-		for(Regist r:regists){
-			Cpet cpet = cpetService.getImgByCid(r.getCpet().getC_id());
-			List<Img> imgs = cpet.getImgs();
-			System.out.println(imgs.size()+"====================================="+r.getCpet().getC_id());
-			System.out.println(imgs.get(0).getImg_id());
-			
-			map.put(r.getCpet().getC_id(), imgs);
-		}
-		
-		request.setAttribute("imgs", map);
 		if(regists.size()>0){
+			for(Regist r:regists){
+				
+				if(cpetService.getImgByCid(r.getCpet().getC_id())!=null){
+					Cpet cpet = cpetService.getImgByCid(r.getCpet().getC_id());
+				List<Img> imgs = cpet.getImgs();
+				System.out.println(imgs.size()+"====================================="+r.getCpet().getC_id());
+				System.out.println(imgs.get(0).getImg_id());
+				
+				map.put(r.getCpet().getC_id(), imgs);
+			
+			request.setAttribute("category", category);
+			request.setAttribute("imgs", map);}
+			
+				mav.addObject("regists", regists);
+				
+			}
+		}
 			mav.addObject("regists", regists);
 			mav.setViewName("pet_list");
-		}
+		
 		return mav;	
 	}
 	
 	@RequestMapping(value="/getCpetById",method=RequestMethod.GET)
 	public ModelAndView getCpetById(HttpServletRequest request, HttpServletResponse response,Integer r_id){
 		ModelAndView mav = new ModelAndView();
-		System.out.println("看这里才对"+r_id);
+		
 		if(registService.getCpetById(r_id)!=null){
 			Regist regist = registService.getCpetById(r_id);
 			

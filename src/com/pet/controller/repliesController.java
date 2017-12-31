@@ -31,6 +31,8 @@ public class repliesController {
 	@Autowired
 	private UserService userService;
 	
+	static int post_id;
+	
 	public ModelAndView save()throws Exception{
 		return null;
 	}
@@ -39,10 +41,13 @@ public class repliesController {
 	@RequestMapping(value="/getAllReplies",method={RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView getPostAll(HttpServletRequest request,
 			HttpServletResponse arg1,Model model)throws Exception{
+		if(request.getParameter("post_id")!=null){
 		String id_last = request.getParameter("post_id");
-		int post_id = Integer.parseInt(id_last);
-		
+		post_id = Integer.parseInt(id_last);
+		}
+		List<User> user_list = userService.getUserAll();
 		Post post = repliesService.getAllReplies(post_id);
+		System.out.println("aut_controller=============="+post.getAuthor());
 		List<Replies> rep_list = new ArrayList<Replies>();
 		List<Img> img_list = new ArrayList<Img>();
 		
@@ -58,10 +63,15 @@ public class repliesController {
 			img_list.add(img);
 			System.out.println("img_key=================="+img.getKey());
 		}
+		User user = (User) request.getSession().getAttribute("u");
+		int u_id = user.getU_id();
+		
 		ModelAndView mav=new ModelAndView();
 		request.setAttribute("post", post);
 		request.setAttribute("img_list", img_list);
 		request.setAttribute("req_list", rep_list);
+		request.setAttribute("user_list", user_list);
+		request.setAttribute("u_id", u_id);
 		mav.setViewName("blog-details");
 		return mav;
 	}
@@ -75,8 +85,8 @@ public class repliesController {
 			
 			//String post_id_last = request.getSession().getAttribute("post_id").toString();
 			User u = (User)request.getSession().getAttribute("u");
-			User user = userService.getUserById(u.getU_id());
-			int u_id = user.getU_id();
+			//User user = userService.getUserById(u.getU_id());
+			int u_id = u.getU_id();
 			String context = request.getParameter("context");
 			int post_id = Integer.parseInt(post_id_last);
 			
@@ -107,8 +117,8 @@ public class repliesController {
 		    List<Integer> hid_list = new ArrayList<Integer>();
 		    hid_list.add(h_id);
 		    String execute = repliesService.replies_Delete(hid_list);
-		    ModelAndView mav = new ModelAndView("MyJsp");
-		    mav.addObject("execute", execute);
+		    ModelAndView mav = new ModelAndView();
+		    mav = this.getPostAll(request, arg1, model);
 			return mav;
 		
 	}

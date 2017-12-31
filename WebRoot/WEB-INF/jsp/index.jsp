@@ -11,6 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@page import="java.util.List" %>
 <%@page import="java.util.Set" %>
 <%@page import="java.util.Map" %>
+<%@page import="java.util.Collections" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" lang="en">
 
@@ -264,10 +265,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="shop-item-wrapper">
 					<div class="row">
-					<%List<Regist> regists = (List)request.getAttribute("regists");
-						Map<Integer,List<Img>> imgs =(Map<Integer,List<Img>>)request.getAttribute("imgs");
-					for(int i=regists.size();i>regists.size()-3;i--){
-											Regist r = regists.get(i-1);
+					<%if(request.getAttribute("regists")!=null){
+						List<Regist> regists = (List)request.getAttribute("regists");
+						Collections.reverse(regists);
+						if(request.getAttribute("imgs")!=null){
+							Map<Integer,List<Img>> imgs =(Map<Integer,List<Img>>)request.getAttribute("imgs");			
+					for(int i=0;i<regists.size();i++){
+											Regist r = regists.get(i);
 										%>
 					<div class="col-md-4 col-xs-6 product-item-width">
 								<div class="shop-item-product-wrapper">
@@ -286,7 +290,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</div>
 								</div>
 							</div>
-							<%} %>
+							<%}} }%>
 							
 				</div>
 				</div>

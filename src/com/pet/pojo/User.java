@@ -14,7 +14,20 @@ public class User {
 	private String user_avatar;//用户头像
 	private String user_desc;//用户描述
 	private String resetPwdKey;//重置key
+	private User_info user_info;
 	
+	/**
+	 * @return the user_info
+	 */
+	public User_info getUser_info() {
+		return user_info;
+	}
+	/**
+	 * @param user_info the user_info to set
+	 */
+	public void setUser_info(User_info user_info) {
+		this.user_info = user_info;
+	}
 	public int getU_id() {
 		return u_id;
 	}

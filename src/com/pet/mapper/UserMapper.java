@@ -12,6 +12,7 @@ public interface UserMapper {
 	public void updateStatus(User user);
 	public List<User> getUserAll();
 	public User getUserById(Integer id);
+	public User findByUserName(String userName);
 	
 	
 

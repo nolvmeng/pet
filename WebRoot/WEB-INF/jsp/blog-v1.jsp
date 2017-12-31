@@ -114,6 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href=<%=path %>/repliesController/getAllReplies.action?post_id=<%=post.get(i).getPost_id() %>><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 点击进入</a>
 									</div>
 								</div>
+								<hr />
 								<%} %>
 								<ul class="bolg-button">
 									<li><a href="#">1</a></li>
@@ -141,7 +142,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>                   <!-- 这里结束 -->
 						</div>
 
-						<div class="col-lg-4 col-md-5 col-xs-12">
+						<!-- <div class="col-lg-4 col-md-5 col-xs-12">
 							<div class="Blog-side-bar-list">
 								<form action="#">
 									<input type="text" placeholder="Search...">
@@ -200,7 +201,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</ul>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</section>
@@ -210,11 +211,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="container">
 					<div class="">
 						<div id="partner-logo" class="owl-carousel owl-theme">
-							<div class="item"><div><img src="images/home/slide-logo-1.png" alt="logo"></div></div>
-							<div class="item"><div><img src="images/home/slide-logo-2.png" alt="logo"></div></div>
-							<div class="item"><div><img src="images/home/slide-logo-3.png" alt="logo"></div></div>
-							<div class="item"><div><img src="images/home/slide-logo-4.png" alt="logo"></div></div>
-							<div class="item"><div><img src="images/home/slide-logo-2.png" alt="logo"></div></div>
+							<div class="item"><div><img src=<%=path %>images/home/slide-logo-1.png alt="logo"></div></div>
+							<div class="item"><div><img src=<%=path %>images/home/slide-logo-2.png alt="logo"></div></div>
+							<div class="item"><div><img src=<%=path %>images/home/slide-logo-3.png alt="logo"></div></div>
+							<div class="item"><div><img src=<%=path %>images/home/slide-logo-4.png alt="logo"></div></div>
+							<div class="item"><div><img src=<%=path %>images/home/slide-logo-2.png alt="logo"></div></div>
 						</div> <!-- End .partner_logo -->
 					</div>
 				</div>

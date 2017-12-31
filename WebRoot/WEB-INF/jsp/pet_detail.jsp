@@ -12,30 +12,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@page import="java.util.Map" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
-<meta charset="UTF-8">
-		<!-- For Resposive Device -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- For IE -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 
 		<title> Mypet </title>
 
 
 		<!-- Favicon -->
-		<link rel="icon" type="image/png" sizes="56x56" href="<%=path%>/<%=path%>/images/them-logo/favicon-1.png">
+		<link rel="icon" type="image/png" sizes="56x56" href="<%=path%>/images/them-logo/favicon-1.png">
 		
 		<!-- Main style sheet -->
 		<link rel="stylesheet" href="<%=path%>/css/style.css">
 		<!-- responsive style sheet -->
 		<link rel="stylesheet" href="<%=path%>/css/responsive.css">
-
-		<!-- Fix Internet Explorer ______________________________________-->
-
-		<!--[if lt IE 9]>
-			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-			<script src="<%=path%>/vendor/html5shiv.js"></script>
-			<script src="<%=path%>/vendor/respond.js"></script>
-		<![endif]-->
+		<link href="<%=path %>/css/Detail-css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- Custom Theme files -->
+<!--theme style-->
+<link href="<%=path %>/css/Detail-style.css" rel="stylesheet" type="text/css" media="all" />	
+<script src="<%=path %>/js/jquery.min.js"></script>
+<!--//theme style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Wedding Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- start menu -->
+<script src="<%=path %>/js/simpleCart.min.js"> </script>
+<!-- start menu -->
+<link href="<%=path %>/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="<%=path %>/js/memenu.js"></script>
+<script>$(document).ready(function(){$(".memenu").memenu();});</script>	
+<!-- /start menu -->
+<link href="<%=path %>/css/form.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="<%=path %>/css/flexslider.css" type="text/css" media="screen" />
+		
 	</head>
 	
 <body>
@@ -43,25 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="main-page-wrapper">
 
 			<!-- Header _________________________________ -->
-			<section class="header-section">
-				<div class="top-header top-header-version-two">
-					<div class="container">
-						<div class="clear-fix">
-							<ul class="float-left top-header-left">
-								
-							</ul>
-							<ul class="float-right top-header-right">
-								
-								<li><a href="#">欢迎您！周博</a></li>
-								
-								<li><a href="login.html">登出</i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-				
-				<!-- Theme Main Menu ____________________________ -->
+			 
 						
 
 			<section class="header-section">
@@ -70,122 +62,75 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<!-- Theme Main Menu ____________________________ -->
 				<jsp:include page="./inclu/MainMenu_1.jsp" />
+				 <div class="clearfix"> </div>
 			</section>
 
-			<!-- shop-page-details ____________________________ -->
-			<section class="shop-page-details">
-				<div class="container">
-					<div class="single-product-details">
-						<div class="row">
-							<div class="col-sm-6 col-xs-12 product-order-img">
-							<%Regist regist = (Regist)request.getAttribute("regist"); 
+			<div class="product">
+	 <div class="container">				
+		 <div class="product-price1">
+			 <div class="top-sing">
+				  <div class="col-md-7 single-top">	
+					 <div class="flexslider">
+							  <ul class="slides">
+							  <%Regist regist = (Regist)request.getAttribute("regist"); 
 							Map<Integer,List<Img>> imgs =(Map<Integer,List<Img>>)request.getAttribute("imgs");
+							//发送登记表与图到订单页
+							
 							%>
-								<div class="vig-img"><img src="http://forpet.oss-cn-shenzhen.aliyuncs.com/post/<%=imgs.get(regist.getCpet().getC_id()).get(0).getKey() %>" alt="image"></div>
-								<div class="row">
-									<div class="col-xs-4">
-										<div><img src="<%=path%>/images/shop/img-21.jpg" alt="image"></div>
-									</div>
-									<div class="col-xs-4">
-										<div><img src="<%=path%>/images/shop/img-22.jpg" alt="image"></div>
-									</div>
-									<div class="col-xs-4">
-										<div><img src="<%=path%>/images/shop/img-23.jpg" alt="image"></div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-sm-6 col-xs-12">
-								<div class="product-order-details">
-									<h3><%=regist.getCpet().getNickname() %></h3>
-									<ul class="rating-and-tag">
-										<h5>登记用户：<%=regist.getUser().getUser_name() %></h5>
-							
-										<h5>登记时间：<%=regist.getTs() %></h5>
-									</ul>
-									<div class="rating-and-tag">
-										<ul class="tag">
-											<li>种类:  <span class="p-color"><%=regist.getCpet().getCategory() %></span></li>
-										</ul><t/>
-										<ul class="tag">
-											<li>品种:  <span class="p-color"><%=regist.getCpet().getType() %></span></li>
-										</ul>
-										<ul class="tag">
-											<li>地区:  <span class="p-color"><%=regist.getCpet().getFrom() %></span></li>
-										</ul>
-									</div>
+							<%for(int i=0;i<imgs.get(regist.getCpet().getC_id()).size();i++){ %>
 									
-									<p>描述:<br/><%=regist.getCpet().getDesc() %></p>
-									<div class="value-decrease-and-button">
-										
-										
-										<a href="#" class="hvr-float-shadow">联系领养</a>
-									</div>
-								</div> <!-- /.product-order-details -->
-							</div> <!-- /.single-product-details -->
-						</div>
+									<li data-thumb="http://forpet.oss-cn-shenzhen.aliyuncs.com/post/<%=imgs.get(regist.getCpet().getC_id()).get(i).getKey() %>">
+									<div class="thumb-image"> <img src="http://forpet.oss-cn-shenzhen.aliyuncs.com/post/<%=imgs.get(regist.getCpet().getC_id()).get(i).getKey() %>" data-imagezoom="true" class="img-responsive" alt=""/> </div>
+								</li>
+									<%} %>
+								
+								
+							  </ul>
+						</div>					 					 
+					 <script src="<%=path %>/js/imagezoom.js"></script>
+						<script defer src="<%=path %>/js/jquery.flexslider.js"></script>
+						<script>
+						// Can also be used with $(document).ready()
+						$(window).load(function() {
+						  $('.flexslider').flexslider({
+							animation: "slide",
+							controlNav: "thumbnails"
+						  });
+						});
+						</script>
 
-						<div class="row">
-							<div class="col-md-9 col-xs-12">
-								<div class="review-tab">
-									<ul class="nav nav-tabs">
-										<li class="active"><a data-toggle="tab" href="#home">Product Description</a></li>
-										<li><a data-toggle="tab" href="#menu1">Additional information</a></li>
-										<li><a data-toggle="tab" href="#menu2">Reviews (1)</a></li>
-									</ul>
-									<div class="tab-content">
-										<div id="home" class="tab-pane fade in active">
-									    	<p>Complete feed for dogs - For adult and mature large breed dogs (from 26 to 44 kg). Over 15 months old. Digestive sensitivity</p>
-									    	<h6>Digestive Health</h6>
-									    	<p>Reinforced digestive tolerance thanks to very high quality protein sources and MOS which promote a balance in the intestinal flora and improve stool quality.</p>
-										</div>
-									  	<div id="menu1" class="tab-pane fade">
-									    	<h4>Ten steps to making </h4>
-									    	<ul>
-									    		<li>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-									    		<li>2. Suspendisse accumsan nunc velit, vel ullamcorper</li>
-									    		<li>3. Quisque mollis tellus diam, non blandit magna accumsan quis.</li>
-									    		<li>4. Sed ultricies eleifend felis pretium cursus.</li>
-									    		<li>5. Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-									    		<li>6. Suspendisse accumsan nunc velit, vel ullamcorper</li>
-									    		<li>7. Quisque mollis tellus diam, non blandit magna accumsan quis.</li>
-									    		<li>8. Sed ultricies eleifend felis pretium cursus.</li>
-									    	</ul>
-									  	</div>
-									  	<div id="menu2" class="tab-pane fade">
-									    	<div id="review">
-												<div class="single-review clearfix">
-													<img src="<%=path%>/images/home/img-5.jpg" alt="" class="float-left">
-													<div class="text float-left">
-														<div class="clearfix">
-															<div class="float-left">
-																<span>March 14, 2017</span>
-																<span>10 days ago</span>
-																<h6>Lindsay Lohan</h6>
-															</div>
-															<ul class="float-right">
-																<li><i class="fa fa-star" aria-hidden="true"></i></li>
-																<li><i class="fa fa-star" aria-hidden="true"></i></li>
-																<li><i class="fa fa-star" aria-hidden="true"></i></li>
-																<li><i class="fa fa-star" aria-hidden="true"></i></li>
-																<li><i class="fa fa-star" aria-hidden="true"></i></li>
-															</ul>
-														</div> <!-- /.clearfix -->
-														<p>I am glad that I have taken the PHP Framework course here at Scholar. The teacher has been amazing throughtout the course. They have outstanding resources to  help you. In addition.</p>
-													</div> <!-- /.text -->
-												</div> <!-- /.single-review -->
-											</div> <!-- /.review -->
-									  	</div>
-									</div>
-								</div> <!-- /.review-tab -->
-								
-								
-								
+				 </div>	
+			     <div class="col-md-5 single-top-in simpleCart_shelfItem">
+					  <div class="single-para ">
+						 <h4>宠物昵称:<%=regist.getCpet().getNickname() %> </h4>							
+							<h5 class="item_price">领养代替购买</h5>							
+							<p ><%=regist.getCpet().getDesc() %></p>
+							<div class="prdt-info">
+								 <ul>
+									 <li>- 登记用户:<%=regist.getUser().getUser_name() %></li>
+									 <li>- 登记时间:<%=regist.getTs() %></li>
+									 <li>- <%=regist.getCpet().getCategory() %></li>
+									 <li>- <%=regist.getCpet().getType() %></li>
+								 </ul>
 							</div>
-						</div>
-					</div>
-				</div>
-			</section> <!-- / .shop-page-details -->
+							<div class="check">
+							 <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><%=regist.getCpet().getFrom() %></p>
+							 <form class="navbar-form">
+								  <div class="form-group">
+									<input type="text" class="form-control" placeholder="Enter Pin code">
+								  </div>
+								  <button type="submit" class="btn btn-default">Verify</button>
+							 </form>
+						    </div>
+							<a href="<%=path %>/adoptController/getCpetOrder.action?r_id=<%=regist.getR_id() %>" class="add-cart item_add">联系领养</a>							
+					 </div>
+				 </div>
+				 <div class="clearfix"> </div>
+			 </div>
+	     </div>
+		 
+	 </div>
+</div>
 
 		     <!--fo     <!--footer  -->
         <jsp:include page="./inclu/footer.jsp" />div> <!-- /.main-page-wrapper -->
@@ -203,27 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<!-- js file -->
 		<!-- Main js file/jquery -->
-		<script src="<%=path%>/vendor/jquery-2.2.3.min.js"></script>
-		<!-- bootstrap-select.min.js -->
-		<script src="<%=path%>/vendor/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>
-		<!-- bootstrap js -->
-		<script src="<%=path%>/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<!-- camera js -->
-		<script src="<%=path%>/vendor/Camera-master/scripts/camera.min.js"></script>
-		<script src="<%=path%>/vendor/Camera-master/scripts/jquery.easing.1.3.js"></script>
-		<!-- Owl carousel -->
-		<script src="<%=path%>/vendor/OwlCarousel2/dist/owl.carousel.min.js"></script>
-		<!-- appear & countTo -->
-		<script src="<%=path%>/vendor/jquery.appear.js"></script>
-		<script src="<%=path%>/vendor/jquery.countTo.js"></script>
-		<!-- fancybox -->
-		<script src="<%=path%>/vendor/fancybox/dist/jquery.fancybox.min.js"></script>
-		<!-- Gallery - isotop -->
-		<script type="text/javascript" src="<%=path%>/vendor/isotope.pkgd.min.js"></script>
-		<!-- WOW js -->
-		<script type="text/javascript" src="<%=path%>/vendor/WOW-master/dist/wow.min.js"></script>
-		<!-- Circle Progress -->
-		<script type="text/javascript" src="<%=path%>/vendor/circle-progress.js"></script>
+		
 		<!-- Style js -->
 		<script src="<%=path%>/js/custom.js"></script>
 </body>

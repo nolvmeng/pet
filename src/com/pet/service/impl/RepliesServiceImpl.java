@@ -26,7 +26,7 @@ public class RepliesServiceImpl implements IRepliesService{
 		Post all_post= repliesMapper.getAllReplies(post_id);
 		Set<Img> img_list = repliesMapper.getpost_img(post_id);
 		//User user = repliesMapper.getpost_user(post_id);
-		
+		System.out.println("aut_service============"+all_post.getAuthor());
 		System.out.println("service+++++++++++"+all_post.getPost_id());
 		all_post.setImg(img_list);
 		return all_post;
@@ -42,7 +42,7 @@ public class RepliesServiceImpl implements IRepliesService{
 	@Override
 	public String replies_Delete(List<Integer> h_id) {
 		List<Integer> hid_list= repliesMapper.getReplies_hid(h_id);
-		repliesMapper.replies_Delete(hid_list);
+		if(hid_list.size()!=0) {repliesMapper.replies_Delete(hid_list);}
 		repliesMapper.replies_Delete(h_id);
 		return "success";
 	}

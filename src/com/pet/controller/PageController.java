@@ -39,21 +39,25 @@ public class PageController {
 		System.out.println("跳转到主页");
 		List<Regist> regists = registService.getAdoptBycategory("");
 		Map<Integer, List<Img>> map = new HashMap<Integer, List<Img>>();
+		if(regists.size()>0){
 		for(Regist r:regists){
-			Cpet cpet = cpetService.getImgByCid(r.getCpet().getC_id());
+			
+			if(cpetService.getImgByCid(r.getCpet().getC_id())!=null){
+				Cpet cpet = cpetService.getImgByCid(r.getCpet().getC_id());
 			List<Img> imgs = cpet.getImgs();
-			System.out.println(imgs.size()+"====================================="+r.getCpet().getC_id());
+			
 			System.out.println(imgs.get(0).getImg_id());
 			
 			map.put(r.getCpet().getC_id(), imgs);
-		}
 		
-		request.setAttribute("imgs", map);
-		if(regists.size()>0){
+		
+		request.setAttribute("imgs", map);}
+		
 			mav.addObject("regists", regists);
 			
 		}
 		mav.setViewName("index");
+		}
 		return mav;
 	}
    @RequestMapping("/")

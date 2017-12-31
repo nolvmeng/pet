@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 		<!-- Favicon -->
-		<link rel="icon" type="image/png" sizes="56x56" href="<%=path%>/<%=path%>/<%=path%>/images/them-logo/favicon-1.png">
+		<link rel="icon" type="image/png" sizes="56x56" href="<%=path%>/images/them-logo/favicon-1.png">
 		
 		<!-- Main style sheet -->
 		<link rel="stylesheet" href="<%=path%>/css/style.css">
@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<script src="<%=path%>/vendor/respond.js"></script>
 		<![endif]-->
 	</head>
-<body><body>
+<body>
 	
 		<div class="main-page-wrapper">
 
@@ -108,10 +108,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<ul class="select-section">
 									<li>
 									<form id="categoryform" method="get" action="<%=path %>/registController/getAdoptBycategory.action">
+									
+									<%
+									   String cate = "";
+									if(request.getAttribute("category")!=null){
+									    cate =request.getAttribute("category").toString();
+									}
+									    String atri[] = {"","",""};
+									    if("".equals(cate)) atri[0] = "selected = \"selected\"";
+									    else  if("cat".equals(cate)) atri[1] = "selected = \"selected\"";
+									    else  if("dog".equals(cate)) atri[2] = "selected = \"selected\"";
+									 %>
 										<select class="selectpicker" name="category" onchange="submitForm();">
-											<option value="">全部显示</option>
-											<option value="cat">猫</option>
-											<option value="dog">狗</option>
+											<option value="" <%=atri[0] %>>全部显示</option>
+											<option value="cat" <%=atri[1] %>>猫</option>
+											<option value="dog" <%=atri[2] %>>狗</option>
 											
 										</select>
 										</form>
@@ -122,8 +133,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						
 						<div class="row">
-						<%List<Regist> regists = (List)request.getAttribute("regists");
-						Map<Integer,List<Img>> imgs =(Map<Integer,List<Img>>)request.getAttribute("imgs");
+						<%if(request.getAttribute("regists")!=null){
+							List<Regist> regists = (List)request.getAttribute("regists");
+							
+							if(request.getAttribute("imgs")!=null){
+								Map<Integer,List<Img>> imgs =(Map<Integer,List<Img>>)request.getAttribute("imgs");
 										for(Regist g:regists){%>
 							<div class="col-md-4 col-xs-6 product-item-width">
 								<div class="shop-item-product-wrapper">
@@ -142,7 +156,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</div>
 								</div>
 							</div>
-							<%} %>
+							<%}
+							}
+						}%>
 							
 						</div>
 						<ul class="shop-page-prev-next-button text-center">

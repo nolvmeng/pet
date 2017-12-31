@@ -73,8 +73,8 @@ public class CpetController {
                  }  
              }  
 		
-        registService.addRegist(regist);
-        mav.setViewName("redirect:/index.action");
+        if(registService.addRegist(regist)>0)
+        {mav.setViewName("redirect:/index.action");}
         return mav;
 		}else{
 			response.setContentType("text/html;charset=gb2312");

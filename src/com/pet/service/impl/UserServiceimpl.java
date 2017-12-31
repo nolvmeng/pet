@@ -1,6 +1,7 @@
 package com.pet.service.impl;
 
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.internet.AddressException;
@@ -116,8 +117,29 @@ public class UserServiceimpl implements UserService {
 		}
 		return result;
 	}
- 
 
-	
+	@Override
+	public boolean isExistUserName(String userName) {
+		boolean result = false;
+		if(userMapper.findByUserName(userName)!=null) result = true;
+				
+		return result;
+	}
+ 
+	@Override
+	public boolean email_isExistUserName(String email) {
+		boolean result = false;
+		if(userMapper.finUserByEmail(email)!=null) result = true;
+				
+		return result;
+	}
+
+
+	@Override
+	public List<User> getUserAll() {
+		List<User> user_list = userMapper.getUserAll();
+		return user_list;
+	}
+ 
 
 }

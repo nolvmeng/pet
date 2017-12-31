@@ -2,8 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pet.mapper.UserMapper">
-	<select id="getUserById" parameterType="int" resultType="User">
-		select * from user where u_id=#{u_id}
+
+	<!--用户表与用户详细表一对一  -->
+	<resultMap type="User" id="user-user_info">
+	<id property="u_id" column="u_id"/>
+	<result property="user_name" column="user_name"/>
+	<result property="email" column="email"/>
+	<result property="user_pwd" column="user_pwd"/>
+	<result property="user_reg_date" column="user_reg_date"/>
+	<result property="user_status" column="user_status"/>
+	<result property="role" column="role"/>
+	<result property="user_activationKey" column="user_activationKey"/>
+	<result property="user_avatar" column="user_avatar"/>
+	<result property="user_desc" column="user_desc"/>
+	<result property="resetPwdKey" column="resetPwdKey"/>
+	<collection property="user_info" ofType="User_info">
+	<id property="u_id" column="u_id"/>
+	<result property="realName" column="realName"/>
+	<result property="bri_date" column="bri_date"/>
+	<result property="sex" column="sex"/>
+	<result property="phone" column="phone"/>
+	<result property="province" column="province"/>
+	<result property="city" column="city"/>
+	<result property="address" column="address"/>
+	</collection>
+	</resultMap>
+	
+	
+	<select id="findByUserName"   parameterType="String" resultType="User">
+		select * from user where user_name=#{user_name}
+	</select>
+	
+	<select id="getUserById" parameterType="int" resultMap="user-user_info">
+		select * from user left join user_info on user.u_id=user_info.u_id where user.u_id=#{u_id}
 	</select>
 	
 		<select id="finUserByEmail" parameterType="String" resultType="User">
@@ -23,6 +54,9 @@
 	<update id="updateStatus" parameterType="User" >
 	  UPDATE  user  SET  user_status=#{user_status} WHERE u_id=#{u_id} ;
 	</update>
-	
+		<!-- 查找所有用户名 -->
+	<select id="getUserAll" resultType="User">
+		select u_id,user_name from user
+	</select>
 	
 </mapper>

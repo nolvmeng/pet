@@ -128,7 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         {    // var mount=document.getElementsByName("nickname").innerText;
 							   var nickname=document.getElementById('nickname') ;
 							   var name = document.getElementById("name");
-						       name.value=nickname.value
+						       name.value=nickname.value;
 						       
 						       var category=document.getElementById('category');
 						       var cate=document.getElementById("cate");

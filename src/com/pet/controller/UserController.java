@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,7 @@ public class UserController {
 	public ModelAndView getUserById(HttpServletRequest request, HttpServletResponse response)throws Exception{
     	User u = (User)request.getSession().getAttribute("u");
 		User user=userService.getUserById(u.getU_id());
-		System.out.println(u.getU_id());
+		System.out.println(user.getUser_info());
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("user", user);
 		mav.setViewName("UMessage");
@@ -57,6 +58,39 @@ public class UserController {
 		
 		return mav;
 	}
+	/**
+	 * ajax验证用户名是否存在
+	 * @param model
+	 * @param userName
+	 * @return
+	 */
+	@ResponseBody  
+    @RequestMapping(value ="/isExist", produces = "application/json")   
+    public boolean isExist(Model model,String user_name) {  
+          
+        boolean flag = userService.isExistUserName(user_name);  
+          System.out.println("dddddd\n"+flag+"cccccc\n");
+        
+          return flag;
+    }   
+	/**
+	 * ajax验证邮箱是否已注册
+	 * @param model
+	 * @param userName
+	 * @return
+	 */
+	@ResponseBody  
+    @RequestMapping(value ="/email_isExist", produces = "application/json")   
+    public boolean email_isExist(Model model,String email) {  
+          
+        boolean flag = userService.email_isExistUserName(email);  
+          System.out.println("dddddd\n"+flag+"cccccc\n");
+          if (flag)
+             return false;  
+          return true;
+    }    
+	
+	
 	@ResponseBody
 	@RequestMapping("/activation")
 	public ModelAndView activation(@RequestParam("key") String key, 

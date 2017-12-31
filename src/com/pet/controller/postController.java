@@ -19,7 +19,9 @@ import com.pet.pojo.Post;
 import com.pet.pojo.User;
 import com.pet.pojo.Img;
 import com.pet.service.IPostService;
+import com.pet.service.IRepliesService;
 import com.pet.service.UserService;
+import com.pet.service.impl.RepliesServiceImpl;
  
 
 @Controller
@@ -53,6 +55,7 @@ public class postController {
 			}
 		}
 		System.out.println("img_size=========="+ post.size());
+		
 		ModelAndView mav=new ModelAndView();
 		//mav.addObject("post", post);
 		mav.addObject("img", img);
@@ -68,8 +71,10 @@ public class postController {
 		//String author_string = request.getSession().getAttribute("uid").toString();
 		//String author_string =request.getParameter("author");
 		User u = (User)request.getSession().getAttribute("u");
-		User user = userService.getUserById(u.getU_id());
-		int author = user.getU_id();
+		System.out.println("==================="+u.toString());
+		//User user = userService.getUserById(u.getU_id());
+		//System.out.println("user==================="+user.toString());
+		int author = u.getU_id();
 		String type =request.getParameter("type");
 		String title =request.getParameter("title");
 		String context =request.getParameter("context");
@@ -108,11 +113,11 @@ public class postController {
 			HttpServletResponse respond,Model model)throws Exception{
 		String id_last = request.getParameter("post_id");
 		int post_id = Integer.parseInt(id_last);
-		
+				
 		String execute = postService.post_Delete(post_id);
 		System.out.println(execute);
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("blog-v1");
+		mav = this.getPostAll(request, respond, model);
 		return mav;
 	}
 }
